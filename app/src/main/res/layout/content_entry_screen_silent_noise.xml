@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_entry_screen_silent_noise">
 
     <TextView
+        android:id="@+id/tekstId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
