@@ -15,21 +15,30 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_entry_screen_silent_noise" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/add_schedule_fab"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_blue_dark"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        tools:srcCompat="@android:drawable/ic_input_add" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColorLink="@color/colorPrimaryDark"
+        android:textSize="16dp"
+        app:fabIcon="@drawable/ic_add_circle_black_30dp"
+        app:fabIconColor="@color/black"
+        app:fabIconPosition="start"
+        app:fabText="Add schedule"
+        app:fabTextColor="@color/black"
+        app:fabType="roundedSquare"
+        app:fabColor="@color/green"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

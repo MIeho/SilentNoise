@@ -1,25 +1,30 @@
 package com.mho.sn.silentnoise;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.mho.sn.silentnoise.settings.persistence.DatabaseSilentNoise;
+import com.mho.sn.silentnoise.settings.persistence.dao.ScheduleDao;
 import com.mho.sn.silentnoise.settings.persistence.entity.ScheduleEntity;
+import com.mho.sn.silentnoise.view.adapter.ListViewScheduleElementAdapter;
+import com.mho.sn.silentnoise.view.element.ListViewScheduleElement;
+import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EntryScreenSilentNoise extends AppCompatActivity {
 
-    private ArrayAdapter<String> adapter;
+    private ListViewScheduleElementAdapter adapter;
     private int scheduleId = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +35,25 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
 
 
         ///////////////////////////
-        DatabaseSilentNoise silentNoiseDb = DatabaseSilentNoise.getDatabase(getApplicationContext());
-
+        ScheduleDao scheduleDao = ((DatabaseSilentNoise) DatabaseSilentNoise.getDatabase(getApplicationContext())).scheduleDao();
 
         ScheduleEntity scheduleEntity = null;
 
-        List<ScheduleEntity> schedulesList = silentNoiseDb.scheduleDao().getAll();
+        List<ScheduleEntity> schedulesList = scheduleDao.getAll();
         if (schedulesList == null || schedulesList.isEmpty()) {
             scheduleEntity = new ScheduleEntity();
             scheduleEntity.setScheduleName("NaszScheduleNowy");
-            silentNoiseDb.scheduleDao().insert(scheduleEntity);
+            scheduleDao.insert(scheduleEntity);
         } else {
-            /*scheduleEntity = schedulesList.stream().findFirst().get();
+            scheduleEntity = schedulesList.stream().findFirst().get();
             String name = scheduleEntity.getScheduleName();
-            scheduleEntity.setScheduleName(name + "\n " + scheduleEntity.getScheduleName().length() + "_nowyName");
-            silentNoiseDb.scheduleDao().updateName(scheduleEntity);*/
-            for (ScheduleEntity entity:schedulesList) {
-                silentNoiseDb.scheduleDao().delete(entity);
-            }
+            scheduleEntity.setScheduleName(name + "\n " + scheduleId++ + "_nowyName");
+            scheduleDao.updateName(scheduleEntity);
+
 
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_schedule_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,17 +61,20 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
                         .setAction("Action", null).show();
                 ScheduleEntity scheduleEntity = new ScheduleEntity();
                 scheduleEntity.setScheduleName("ScheduleNext" + scheduleId++);
-                silentNoiseDb.scheduleDao().insert(scheduleEntity);
+                scheduleDao.insert(scheduleEntity);
 
-                List<ScheduleEntity> schedulesList = silentNoiseDb.scheduleDao().getAll();
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.schedule_list_view_element, schedulesList.stream().map(ScheduleEntity::getScheduleName).toArray(String[]::new));
-
+                List<ScheduleEntity> schedulesList = scheduleDao.getAll();
+                ArrayList<ListViewScheduleElement> listOfSchedulesLVElements = (ArrayList<ListViewScheduleElement>) schedulesList
+                        .stream().map(schedule -> new ListViewScheduleElement(schedule.getScheduleName(), true)).collect(Collectors.toList());
+                adapter = new ListViewScheduleElementAdapter(getApplicationContext(), R.layout.schedule_list_view_element, listOfSchedulesLVElements);
                 ((ListView) findViewById(R.id.listOfSchedulesId)).setAdapter(adapter);
             }
         });
 
-
-        adapter = new ArrayAdapter<String>(this, R.layout.schedule_list_view_element, schedulesList.stream().map(ScheduleEntity::getScheduleName).toArray(String[]::new));
+        ArrayList<ListViewScheduleElement> listOfSchedulesLVElements =
+                (ArrayList<ListViewScheduleElement>) schedulesList
+                        .stream().map(schedule -> new ListViewScheduleElement(schedule.getScheduleName(), true)).collect(Collectors.toList());
+        adapter = new ListViewScheduleElementAdapter(getApplicationContext(), R.layout.schedule_list_view_element, listOfSchedulesLVElements);
 
         ((ListView) findViewById(R.id.listOfSchedulesId)).setAdapter(adapter);
 ////////////////////////
