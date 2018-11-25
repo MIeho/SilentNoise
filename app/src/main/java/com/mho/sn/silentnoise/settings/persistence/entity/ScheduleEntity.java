@@ -3,14 +3,20 @@ package com.mho.sn.silentnoise.settings.persistence.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import java.io.Serializable;
 
 /**
  * @author Gabriel Kiełbus on 15.11.2018 20:39
  * @project SoundsManager
  */
 @Entity
-public class ScheduleEntity {
+public class ScheduleEntity implements Serializable {
+
+    @Ignore
+    private static final long serialVersionUID = 6271391360607488563L;
 
     @PrimaryKey(autoGenerate = true)
     private int scheduleId;
@@ -80,6 +86,9 @@ public class ScheduleEntity {
 
     @Embedded(prefix = "sun_")
     private ScheduleDaySettings sunScheduleDaySettings;
+
+    @Ignore
+    private boolean active;
 
     public int getScheduleId() {
         return scheduleId;
@@ -263,5 +272,13 @@ public class ScheduleEntity {
 
     public void setSunScheduleDaySettings(ScheduleDaySettings sunScheduleDaySettings) {
         this.sunScheduleDaySettings = sunScheduleDaySettings;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -1,62 +1,91 @@
 package com.mho.sn.silentnoise.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mho.sn.silentnoise.R;
-import com.mho.sn.silentnoise.view.element.ListViewScheduleElement;
+import com.mho.sn.silentnoise.activities.ScheduleElementActivity;
+import com.mho.sn.silentnoise.settings.persistence.entity.ScheduleEntity;
+import com.mho.sn.silentnoise.utils.IntentPassElementCnsts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Gabriel Kiełbus on 19.11.2018 22:34
  * @project SilentNoise
  */
-public class ListViewScheduleElementAdapter extends ArrayAdapter<ListViewScheduleElement> implements View.OnUnhandledKeyEventListener{
+public class ListViewScheduleElementAdapter extends BaseAdapter {
 
+    private Context context;
+    private ArrayList<ScheduleEntity> listOfItems;
+    private int listViewELementResourceId;
 
-    private final LayoutInflater mInflater;
-    private ArrayList<ListViewScheduleElement> scheduleElementsList;
-    private int listViewItemResourceId;
+    public ListViewScheduleElementAdapter(Context context, List<ScheduleEntity> listOfItems, int listViewELementResourceId) {
+        this.context = context;
+        this.listOfItems = (ArrayList<ScheduleEntity>) listOfItems;
+        this.listViewELementResourceId = listViewELementResourceId;
+    }
 
-    public ListViewScheduleElementAdapter(Context context, int listViewItemResourceId, ArrayList<ListViewScheduleElement> scheduleElementsList) {
-        super(context, listViewItemResourceId);
-        this.scheduleElementsList = scheduleElementsList;
-        this.mInflater = LayoutInflater.from(context);
-        this.listViewItemResourceId = listViewItemResourceId;
+    @Override
+    public int getCount() {
+        return listOfItems.size(); //returns total of items in the list
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listOfItems.get(position); //returns list item at the specified position
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final View view;
+        // inflate the layout for each list row
         if (convertView == null) {
-            view = mInflater.inflate(R.layout.schedule_list_view_element, null);
-        } else {
-            view = convertView;
+            convertView = LayoutInflater.from(context).
+                    inflate(listViewELementResourceId, parent, false);
         }
 
-        ListViewScheduleElement scheduleElement = scheduleElementsList.get(position);
+        ScheduleEntity scheduleElement = (ScheduleEntity) getItem(position);
 
         if (scheduleElement != null) {
-            ((TextView) view.findViewById(R.id.lv_item_schedule_name)).setText(scheduleElement.getScheduleName());
+            ((TextView) convertView.findViewById(R.id.lv_item_schedule_name)).setText(scheduleElement.getScheduleName());
             if (scheduleElement.isActive()) {
-                ((ImageView) view.findViewById(R.id.lv_item_imageView_is_active)).setImageResource(R.drawable.ic_check_box_checked_black_26dp);
+                ((ImageView) convertView.findViewById(R.id.lv_item_imageView_is_active)).setImageResource(R.drawable.ic_check_box_checked_black_26dp);
             } else {
-                ((ImageView) view.findViewById(R.id.lv_item_imageView_is_active)).setImageResource(R.drawable.ic_check_box_not_checked_black_26dp);
+                ((ImageView) convertView.findViewById(R.id.lv_item_imageView_is_active))
+                        .setImageResource(R.drawable.ic_check_box_not_checked_black_26dp);
+
             }
+
+            ((ImageView) convertView.findViewById(R.id.lv_item_imageView_is_active)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scheduleElement.setActive(!scheduleElement.isActive());
+                    notifyDataSetChanged();
+                }
+            });
+
+            convertView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, ScheduleElementActivity.class);
+                intent.putExtra(IntentPassElementCnsts.SCHEDULE_ELEMENT_KEY, scheduleElement);
+                context.startActivity(intent);
+            });
 
         }
 
-        return view;
+        return convertView;
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

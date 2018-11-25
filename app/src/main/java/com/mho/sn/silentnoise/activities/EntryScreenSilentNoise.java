@@ -1,26 +1,32 @@
-package com.mho.sn.silentnoise;
+package com.mho.sn.silentnoise.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
+import com.mho.sn.silentnoise.R;
 import com.mho.sn.silentnoise.settings.persistence.DatabaseSilentNoise;
 import com.mho.sn.silentnoise.settings.persistence.dao.ScheduleDao;
 import com.mho.sn.silentnoise.settings.persistence.entity.ScheduleEntity;
 import com.mho.sn.silentnoise.view.adapter.ListViewScheduleElementAdapter;
-import com.mho.sn.silentnoise.view.element.ListViewScheduleElement;
 import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EntryScreenSilentNoise extends AppCompatActivity {
+
+    private Context applicationContext;
+    private ConstraintLayout mainLayout;
+    private PopupWindow addSchemePopUp;
 
     private ListViewScheduleElementAdapter adapter;
     private int scheduleId = 1;
@@ -32,7 +38,8 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
         setContentView(R.layout.activity_entry_screen_silent_noise);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        applicationContext = getApplicationContext();
+        mainLayout = new ConstraintLayout(this);
 
         ///////////////////////////
         ScheduleDao scheduleDao = ((DatabaseSilentNoise) DatabaseSilentNoise.getDatabase(getApplicationContext())).scheduleDao();
@@ -49,32 +56,30 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
             String name = scheduleEntity.getScheduleName();
             scheduleEntity.setScheduleName(name + "\n " + scheduleId++ + "_nowyName");
             scheduleDao.updateName(scheduleEntity);
-
-
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_schedule_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Added new schedule", Snackbar.LENGTH_LONG)
+                DialogFragment newFragment = new AddSchemePopupDialog();
+                newFragment.show(getSupportFragmentManager(), "addSchemeName");
+
+
+                /*Snackbar.make(view, "Added new schedule", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 ScheduleEntity scheduleEntity = new ScheduleEntity();
                 scheduleEntity.setScheduleName("ScheduleNext" + scheduleId++);
                 scheduleDao.insert(scheduleEntity);
 
                 List<ScheduleEntity> schedulesList = scheduleDao.getAll();
-                ArrayList<ListViewScheduleElement> listOfSchedulesLVElements = (ArrayList<ListViewScheduleElement>) schedulesList
-                        .stream().map(schedule -> new ListViewScheduleElement(schedule.getScheduleName(), true)).collect(Collectors.toList());
-                adapter = new ListViewScheduleElementAdapter(getApplicationContext(), R.layout.schedule_list_view_element, listOfSchedulesLVElements);
-                ((ListView) findViewById(R.id.listOfSchedulesId)).setAdapter(adapter);
+                adapter = new ListViewScheduleElementAdapter(getApplicationContext(), schedulesList, R.layout.schedule_list_view_element);
+                ListView listViewOfSchedules = (ListView) findViewById(R.id.listOfSchedulesId);
+                listViewOfSchedules.setAdapter(adapter);*/
             }
         });
 
-        ArrayList<ListViewScheduleElement> listOfSchedulesLVElements =
-                (ArrayList<ListViewScheduleElement>) schedulesList
-                        .stream().map(schedule -> new ListViewScheduleElement(schedule.getScheduleName(), true)).collect(Collectors.toList());
-        adapter = new ListViewScheduleElementAdapter(getApplicationContext(), R.layout.schedule_list_view_element, listOfSchedulesLVElements);
+        adapter = new ListViewScheduleElementAdapter(getApplicationContext(), schedulesList, R.layout.schedule_list_view_element);
 
         ((ListView) findViewById(R.id.listOfSchedulesId)).setAdapter(adapter);
 ////////////////////////
