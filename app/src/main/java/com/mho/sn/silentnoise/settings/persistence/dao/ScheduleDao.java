@@ -27,7 +27,7 @@ public interface ScheduleDao {
     ScheduleEntity findByName(String scheduleName);
 
     @Update
-    void updateName(ScheduleEntity scheduleEntity);
+    void update(ScheduleEntity scheduleEntity);
 
     @Insert
     void insert(ScheduleEntity scheduleEntity);

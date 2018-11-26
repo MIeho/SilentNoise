@@ -1,18 +1,23 @@
 package com.mho.sn.silentnoise.view.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.mho.sn.silentnoise.R;
-import com.mho.sn.silentnoise.activities.ScheduleElementActivity;
+import com.mho.sn.silentnoise.settings.persistence.DatabaseSilentNoise;
+import com.mho.sn.silentnoise.settings.persistence.dao.ScheduleDao;
 import com.mho.sn.silentnoise.settings.persistence.entity.ScheduleEntity;
-import com.mho.sn.silentnoise.utils.IntentPassElementCnsts;
+import com.mho.sn.silentnoise.utils.ViewUtils;
+
+import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +30,14 @@ public class ListViewScheduleElementAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<ScheduleEntity> listOfItems;
+    private ScheduleDao scheduleDao;
     private int listViewELementResourceId;
 
     public ListViewScheduleElementAdapter(Context context, List<ScheduleEntity> listOfItems, int listViewELementResourceId) {
         this.context = context;
         this.listOfItems = (ArrayList<ScheduleEntity>) listOfItems;
         this.listViewELementResourceId = listViewELementResourceId;
+        this.scheduleDao = ((DatabaseSilentNoise) DatabaseSilentNoise.getDatabase(context)).scheduleDao();
     }
 
     @Override
@@ -77,9 +84,51 @@ public class ListViewScheduleElementAdapter extends BaseAdapter {
             });
 
             convertView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, ScheduleElementActivity.class);
-                intent.putExtra(IntentPassElementCnsts.SCHEDULE_ELEMENT_KEY, scheduleElement);
-                context.startActivity(intent);
+                ViewUtils.goToView(context, scheduleElement);
+            });
+
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    PopupMenu popup = new PopupMenu(context, v);
+                    MenuInflater inflater = popup.getMenuInflater();
+                    inflater.inflate(R.menu.schedule_scheme_long_click_menu, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu_go_to:
+                                    ViewUtils.goToView(context, scheduleElement);
+                                    return true;
+                                case R.id.menu_duplicate:
+                                    ScheduleEntity scheduleElementCopy = SerializationUtils.clone(scheduleElement);
+                                    scheduleElementCopy.setScheduleName(scheduleElement.getScheduleName() + " (Duplicate)");
+                                    scheduleElementCopy.setScheduleId(null);
+                                    scheduleDao.insert(scheduleElementCopy);
+                                    listOfItems.add(scheduleElementCopy);
+                                    notifyDataSetChanged();
+                                    return true;
+                                case R.id.menu_delete:
+                                    scheduleDao.delete(scheduleElement);
+                                    listOfItems.remove(scheduleElement);
+                                    notifyDataSetChanged();
+                                    return true;
+                                case R.id.menu_activate_now:
+                                    scheduleDao.update(scheduleElement.active(true));
+                                    notifyDataSetChanged();
+                                    return true;
+                                default:
+                                    return false;
+                            }
+
+                        }
+                    });
+
+
+                    popup.show();
+
+                    return false;
+                }
             });
 
         }

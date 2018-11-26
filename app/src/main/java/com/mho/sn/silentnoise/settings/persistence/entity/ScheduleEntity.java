@@ -19,7 +19,7 @@ public class ScheduleEntity implements Serializable {
     private static final long serialVersionUID = 6271391360607488563L;
 
     @PrimaryKey(autoGenerate = true)
-    private int scheduleId;
+    private Integer scheduleId;
 
     @ColumnInfo
     private String scheduleName;
@@ -90,11 +90,11 @@ public class ScheduleEntity implements Serializable {
     @Ignore
     private boolean active;
 
-    public int getScheduleId() {
+    public Integer getScheduleId() {
         return scheduleId;
     }
 
-    public void setScheduleId(int scheduleId) {
+    public void setScheduleId(Integer scheduleId) {
         this.scheduleId = scheduleId;
     }
 
@@ -104,6 +104,11 @@ public class ScheduleEntity implements Serializable {
 
     public void setScheduleName(String scheduleName) {
         this.scheduleName = scheduleName;
+    }
+
+    public ScheduleEntity scheduleName(String scheduleName) {
+        this.scheduleName = scheduleName;
+        return this;
     }
 
     public int getRinghtoneVolLvl() {
@@ -280,5 +285,10 @@ public class ScheduleEntity implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public ScheduleEntity active(boolean active) {
+        this.active = active;
+        return this;
     }
 }
