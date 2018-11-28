@@ -3,6 +3,7 @@ package com.mho.sn.silentnoise.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.mho.sn.silentnoise.R;
 import com.mho.sn.silentnoise.settings.persistence.DatabaseSilentNoise;
@@ -63,6 +65,19 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
             public void onClick(View view) {
                 DialogFragment newFragment = new AddSchemePopupDialog();
                 newFragment.show(getSupportFragmentManager(), "addSchemeName");
+
+                /*Snackbar.make(view, "Added new schedule", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                ScheduleEntity scheduleEntity = new ScheduleEntity();
+                scheduleEntity.active(true).setScheduleName(((TextView) findViewById(R.id.enterNewSchemeNameEditText_Id)).getText().toString());
+
+                scheduleDao.insert(scheduleEntity);
+
+
+                List<ScheduleEntity> schedulesList = scheduleDao.getAll();
+                adapter = new ListViewScheduleElementAdapter(getApplicationContext(), schedulesList, R.layout.schedule_list_view_element);
+                ListView listViewOfSchedules = (ListView) findViewById(R.id.listOfSchedulesId);
+                listViewOfSchedules.setAdapter(adapter);*/
             }
         });
 

@@ -87,7 +87,7 @@ public class ScheduleEntity implements Serializable {
     @Embedded(prefix = "sun_")
     private ScheduleDaySettings sunScheduleDaySettings;
 
-    @Ignore
+    @ColumnInfo
     private boolean active;
 
     public Integer getScheduleId() {

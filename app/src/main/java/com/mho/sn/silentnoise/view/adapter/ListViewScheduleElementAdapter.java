@@ -79,6 +79,7 @@ public class ListViewScheduleElementAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     scheduleElement.setActive(!scheduleElement.isActive());
+                    scheduleDao.update(scheduleElement);
                     notifyDataSetChanged();
                 }
             });

@@ -12,7 +12,7 @@ import com.mho.sn.silentnoise.settings.persistence.entity.ScheduleEntity;
  * @author Gabriel Kiełbus on 15.11.2018 22:47
  * @project SoundsManager
  */
-@Database(entities = {ScheduleEntity.class}, version = 2, exportSchema = false)
+@Database(entities = {ScheduleEntity.class}, version = 3, exportSchema = false)
 public abstract class DatabaseSilentNoise extends RoomDatabase {
 
     private static volatile DatabaseSilentNoise INSTANCE;

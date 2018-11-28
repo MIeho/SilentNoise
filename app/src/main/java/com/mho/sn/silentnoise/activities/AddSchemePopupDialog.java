@@ -39,6 +39,7 @@ public class AddSchemePopupDialog extends DialogFragment {
                    public void onClick(DialogInterface dialog, int id) {
                        EditText editText = (EditText) getDialog().findViewById(R.id.enterNewSchemeNameEditText_Id);
                        ScheduleEntity scheduleEntity = new ScheduleEntity();
+                       scheduleEntity.setActive(true);
                        scheduleEntity.setScheduleName(editText.getText().toString());
                        scheduleDao.insert(scheduleEntity);
 
