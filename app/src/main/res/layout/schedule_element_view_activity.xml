@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ScheduleElementActivity">
+
+    <LinearLayout
+        android:id="@+id/main_scheme_settings_on_sv_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/scheme_name_title_on_sv_id"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:gravity="center_horizontal|center"
+            android:text="@string/title_home"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/settings_section_on_sv_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/ringhtones_layout_on_sv_id"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <TextView
+                    android:id="@+id/ringhtones_name_title_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Volume level of ringhtones"
+                    app:layout_constraintBottom_toTopOf="@+id/ringhtones_vol_level_sb_on_sv_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ringhtones_vol_level_tv_on_sv_id"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="50%"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ringhtones_vol_level_sb_on_sv_id"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/ringhtones_vol_level_sb_on_sv_id"
+                    style="@android:style/Widget.SeekBar"
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:gravity="center_vertical"
+                    android:max="10"
+                    android:progress="3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ringhtones_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/ringhtones_vol_level_tv_on_sv_id" />
+
+                <CheckBox
+                    android:id="@+id/ringhtones_vibration_chbx_on_sv_id"
+                    style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+                    android:layout_width="30dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/ringhtones_vol_level_sb_on_sv_id" />
+
+                <TextView
+                    android:id="@+id/ringhtones_vibration_chbx_lbl_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="0dp"
+                    android:text="Vibrate"
+                    app:layout_constraintStart_toEndOf="@+id/ringhtones_vol_level_sb_on_sv_id"
+                    app:layout_constraintTop_toTopOf="@+id/ringhtones_vibration_chbx_on_sv_id" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/alarms_layout_on_sv_id"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <TextView
+                    android:id="@+id/alarms_vibration_chbx_lbl_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="0dp"
+                    android:text="Vibrate"
+                    app:layout_constraintStart_toEndOf="@+id/alarms_vol_level_sb_on_sv_id"
+                    app:layout_constraintTop_toTopOf="@+id/alarms_vibration_chbx_on_sv_id" />
+
+                <TextView
+                    android:id="@+id/alarms_name_title_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Volume level of alarms"
+                    app:layout_constraintBottom_toTopOf="@+id/alarms_vol_level_sb_on_sv_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/alarms_vol_level_tv_on_sv_id"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="150%"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/alarms_vol_level_sb_on_sv_id"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/alarms_vol_level_sb_on_sv_id"
+                    style="@android:style/Widget.SeekBar"
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:gravity="center_vertical"
+                    android:max="10"
+                    android:progress="3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/alarms_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/alarms_vol_level_tv_on_sv_id" />
+
+                <CheckBox
+                    android:id="@+id/alarms_vibration_chbx_on_sv_id"
+                    style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+                    android:layout_width="30dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/alarms_vol_level_sb_on_sv_id" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/multimedia_layout_on_sv_id"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <TextView
+                    android:id="@+id/multimedia_vibration_chbx_lbl_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="0dp"
+                    android:text="Vibrate"
+                    app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_sb_on_sv_id"
+                    app:layout_constraintTop_toTopOf="@+id/multimedia_vibration_chbx_on_sv_id" />
+
+                <TextView
+                    android:id="@+id/multimedia_name_title_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Volume level of multimedia"
+                    app:layout_constraintBottom_toTopOf="@+id/multimedia_vol_level_sb_on_sv_id"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/multimedia_vol_level_tv_on_sv_id"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:text="50%"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/multimedia_vol_level_sb_on_sv_id"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <SeekBar
+                    android:id="@+id/multimedia_vol_level_sb_on_sv_id"
+                    style="@android:style/Widget.SeekBar"
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:gravity="center_vertical"
+                    android:max="10"
+                    android:progress="3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/multimedia_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_tv_on_sv_id" />
+
+                <CheckBox
+                    android:id="@+id/multimedia_vibration_chbx_on_sv_id"
+                    style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+                    android:layout_width="30dp"
+                    android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_sb_on_sv_id" />
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_button_layout_on_sv_id"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/save_bttn_on_sv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save" />
+
+            <Button
+                android:id="@+id/activate_bttn_on_sv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Activate" />
+
+            <Button
+                android:id="@+id/delete_bttn_on_sv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

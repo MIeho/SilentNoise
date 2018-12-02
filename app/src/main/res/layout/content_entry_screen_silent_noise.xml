@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.EntryScreenSilentNoise"
-    tools:showIn="@layout/activity_entry_screen_silent_noise">
+    tools:showIn="@layout/main_ativity_entry_screen_silent_noise">
 
     <ListView
         android:id="@+id/listOfSchedulesId"

@@ -3,7 +3,6 @@ package com.mho.sn.silentnoise.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.mho.sn.silentnoise.R;
 import com.mho.sn.silentnoise.settings.persistence.DatabaseSilentNoise;
@@ -36,7 +34,7 @@ public class EntryScreenSilentNoise extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry_screen_silent_noise);
+        setContentView(R.layout.main_ativity_entry_screen_silent_noise);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         applicationContext = getApplicationContext();
