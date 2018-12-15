@@ -21,6 +21,17 @@
             android:text="@string/title_home"
             android:textStyle="bold" />
 
+        <View
+            android:id="@+id/lineBeforeFunctionsSectionId"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/colorPrimary" />
+
         <LinearLayout
             android:id="@+id/settings_section_on_sv_id"
             android:layout_width="match_parent"
@@ -31,7 +42,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ringhtones_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="@dimen/volume_level_row_controls_height">
 
                 <TextView
                     android:id="@+id/ringhtones_name_title_on_sv_id"
@@ -88,27 +99,27 @@
                 <TextView
                     android:id="@+id/ringhtones_vibration_chbx_lbl_on_sv_id"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
                     android:text="Vibrate"
-                    app:layout_constraintStart_toEndOf="@+id/ringhtones_vol_level_sb_on_sv_id"
-                    app:layout_constraintTop_toTopOf="@+id/ringhtones_vibration_chbx_on_sv_id" />
+                    app:layout_constraintBottom_toTopOf="@+id/ringhtones_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/ringhtones_vol_level_sb_on_sv_id" />
 
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/alarms_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="@dimen/volume_level_row_controls_height">
 
                 <TextView
                     android:id="@+id/alarms_vibration_chbx_lbl_on_sv_id"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
                     android:text="Vibrate"
-                    app:layout_constraintStart_toEndOf="@+id/alarms_vol_level_sb_on_sv_id"
-                    app:layout_constraintTop_toTopOf="@+id/alarms_vibration_chbx_on_sv_id" />
+                    app:layout_constraintBottom_toTopOf="@+id/alarms_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/alarms_vol_level_sb_on_sv_id" />
 
                 <TextView
                     android:id="@+id/alarms_name_title_on_sv_id"
@@ -166,16 +177,16 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/multimedia_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="@dimen/volume_level_row_controls_height">
 
                 <TextView
                     android:id="@+id/multimedia_vibration_chbx_lbl_on_sv_id"
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="4dp"
                     android:text="Vibrate"
-                    app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_sb_on_sv_id"
-                    app:layout_constraintTop_toTopOf="@+id/multimedia_vibration_chbx_on_sv_id" />
+                    app:layout_constraintBottom_toTopOf="@+id/multimedia_vibration_chbx_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_sb_on_sv_id" />
 
                 <TextView
                     android:id="@+id/multimedia_name_title_on_sv_id"
@@ -208,6 +219,7 @@
                     style="@android:style/Widget.SeekBar"
                     android:layout_width="280dp"
                     android:layout_height="@dimen/volume_level_controls_height"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center_vertical"
                     android:max="10"
                     android:progress="3"
@@ -229,13 +241,211 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/multimedia_vol_level_sb_on_sv_id" />
             </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:id="@+id/lineAfterVolumeSectionId"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorPrimary" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/wifi_layout_on_sv_id"
+                android:layout_width="match_parent"
+                android:layout_height="36dp">
+
+                <Switch
+                    android:id="@+id/wifi_switch_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Wi-Fi  "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bluetooth_switch_on_sv_id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Switch
+                    android:id="@+id/bluetooth_switch_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Bluetooth  "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/gps_switch_on_sv_id"
+                    app:layout_constraintStart_toEndOf="@+id/wifi_switch_on_sv_id"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Switch
+                    android:id="@+id/gps_switch_on_sv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="GPS  "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bluetooth_switch_on_sv_id"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:id="@+id/lineAfterFunctionsSectionId"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:id="@+id/main_time_start_setting_layout_on_sv_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/main_time_stop_layout_on_sv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/main_time_row_controls_height">
+
+                    <TextView
+                        android:id="@+id/main_start_time_lbl_on_sv_id"
+                        android:layout_width="150dp"
+                        android:layout_height="@dimen/volume_level_controls_height"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="26dp"
+                        android:labelFor="@+id/main_start_time_on_sv_id"
+                        android:text="Czas włączenia:"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/main_start_time_on_sv_id"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/main_start_time_on_sv_id"
+                        android:layout_width="180dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="2dp"
+                        android:autofillHints="Czas codziennego włączenia ustawienia."
+                        android:inputType="time"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="main_start_time_active_chbx_on_sv_id"
+                        app:layout_constraintStart_toEndOf="@+id/main_start_time_lbl_on_sv_id"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/main_start_time_active_chbx_on_sv_id"
+                        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="1dp"
+                        android:checked="true"
+                        android:gravity="top"
+                        android:paddingLeft="-33dp"
+                        android:paddingTop="25dp"
+                        android:text="Aktywny"
+                        android:textAlignment="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/main_start_time_on_sv_id" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/main_time_start_layout_on_sv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/main_time_row_controls_height">
+
+                    <TextView
+                        android:id="@+id/main_stop_time_lbl_on_sv_id"
+                        android:layout_width="150dp"
+                        android:layout_height="@dimen/volume_level_controls_height"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="26dp"
+                        android:labelFor="@+id/main_start_time_on_sv_id"
+                        android:text="Czas wyłączenia:"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/main_stop_time_on_sv_id"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/main_stop_time_on_sv_id"
+                        android:layout_width="180dp"
+                        android:layout_height="@dimen/volume_level_controls_height"
+                        android:layout_marginStart="2dp"
+                        android:autofillHints="Czas codziennego wyłączenia ustawienia."
+                        android:inputType="time"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="main_stop_time_active_chbx_on_sv_id"
+                        app:layout_constraintStart_toEndOf="@+id/main_stop_time_lbl_on_sv_id"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/main_stop_time_active_chbx_on_sv_id"
+                        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.CheckBox"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="1dp"
+                        android:checked="true"
+                        android:gravity="top"
+                        android:paddingLeft="-33dp"
+                        android:paddingTop="25dp"
+                        android:text="Aktywny"
+                        android:textAlignment="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/main_stop_time_on_sv_id" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:id="@+id/lineAfterMainTimeSectionId"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/colorPrimary" />
 
         <LinearLayout
             android:id="@+id/bottom_button_layout_on_sv_id"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
 
             <Button
                 android:id="@+id/save_bttn_on_sv_id"
@@ -259,7 +469,6 @@
                 android:text="Delete" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 
