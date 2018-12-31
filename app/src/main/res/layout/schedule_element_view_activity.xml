@@ -42,7 +42,9 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/ringhtones_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/volume_level_row_controls_height">
+                android:layout_height="@dimen/volume_level_row_controls_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
                 <TextView
                     android:id="@+id/ringhtones_name_title_on_sv_id"
@@ -110,7 +112,9 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/alarms_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/volume_level_row_controls_height">
+                android:layout_height="@dimen/volume_level_row_controls_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
                 <TextView
                     android:id="@+id/alarms_vibration_chbx_lbl_on_sv_id"
@@ -177,7 +181,9 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/multimedia_layout_on_sv_id"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/volume_level_row_controls_height">
+                android:layout_height="@dimen/volume_level_row_controls_height"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
 
                 <TextView
                     android:id="@+id/multimedia_vibration_chbx_lbl_on_sv_id"
@@ -318,7 +324,9 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/main_time_stop_layout_on_sv_id"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/main_time_row_controls_height">
+                    android:layout_height="@dimen/main_time_row_controls_height"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
 
                     <TextView
                         android:id="@+id/main_start_time_lbl_on_sv_id"
@@ -332,20 +340,21 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/main_start_time_on_sv_id"
+                        app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/main_start_time_on_sv_id"
                         android:layout_width="180dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="2dp"
+                        android:layout_height="@dimen/volume_level_controls_height"
+                        android:layout_marginStart="1dp"
                         android:autofillHints="Czas codziennego włączenia ustawienia."
                         android:inputType="time"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="main_start_time_active_chbx_on_sv_id"
+                        app:layout_constraintEnd_toStartOf="@+id/main_start_time_active_chbx_on_sv_id"
                         app:layout_constraintStart_toEndOf="@+id/main_start_time_lbl_on_sv_id"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -374,8 +383,10 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/main_time_start_layout_on_sv_id"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/main_time_row_controls_height">
-
+                    android:layout_height="@dimen/main_time_row_controls_height"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+↓
                     <TextView
                         android:id="@+id/main_stop_time_lbl_on_sv_id"
                         android:layout_width="150dp"
@@ -395,13 +406,13 @@
                         android:id="@+id/main_stop_time_on_sv_id"
                         android:layout_width="180dp"
                         android:layout_height="@dimen/volume_level_controls_height"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="1dp"
                         android:autofillHints="Czas codziennego wyłączenia ustawienia."
                         android:inputType="time"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="18dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="main_stop_time_active_chbx_on_sv_id"
+                        app:layout_constraintEnd_toStartOf="@+id/main_stop_time_active_chbx_on_sv_id"
                         app:layout_constraintStart_toEndOf="@+id/main_stop_time_lbl_on_sv_id"
                         app:layout_constraintTop_toTopOf="parent" />
 
